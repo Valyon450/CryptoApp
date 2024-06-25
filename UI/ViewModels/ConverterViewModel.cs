@@ -96,7 +96,7 @@ namespace UI.ViewModels
             {
                 var fromRate = _currencyRates[FromCurrency];
                 var toRate = _currencyRates[ToCurrency];
-                ConvertedAmount = Amount / fromRate * toRate;
+                ConvertedAmount = Amount / toRate * fromRate;
             }
         }
 
