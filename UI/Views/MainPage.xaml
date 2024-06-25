@@ -1,0 +1,117 @@
+﻿<Page
+    x:Class="UI.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dto="using:BusinessLogic.DTOs"
+    xmlns:vm="using:UI.ViewModels"
+    xmlns:controlsButtons="using:UI.CommonControls.Buttons"
+    xmlns:controlsComboBoxes="using:UI.CommonControls.ComboBoxes"
+    xmlns:controlsCommandBars="using:UI.CommonControls.CommandBars"
+    xmlns:controlsConverters="using:UI.CommonControls.Converters"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Foreground="{ThemeResource ApplicationForegroundThemeBrush}">
+
+    <Page.DataContext>
+        <vm:MainViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <controlsConverters:AmountConverter x:Key="AmountConverter"/>
+        <controlsConverters:PercentageConverter x:Key="PercentageConverter"/>
+    </Page.Resources>
+
+    <Grid Padding="20">
+        <!-- Title -->
+        <TextBlock x:Name="TitleText" Text="Top Cryptocurrencies" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,65,0,0">
+            <!-- Search Bar -->
+            <TextBox x:Name="SearchBox" Width="300" VerticalAlignment="Center" Height="35" PlaceholderText="Search by name or symbol" Margin="0,0,20,0"/>
+            <Button Content="Search"
+                Width="80"
+                Height="40"                
+                BorderThickness="1"
+                Padding="10"
+                CornerRadius="10"
+                Click="SearchButton_Click">
+            </Button>
+        </StackPanel>
+
+        <!--Button to navigate to ConverterPage-->
+        <controlsButtons:ConverterPageButton HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
+
+        <TextBlock Text="Refresh Rate" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,75,220,0"/>
+        <!-- ComboBox for Refresh Rate -->
+        <controlsComboBoxes:RefreshRateComboBox HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,70,100,0" RefreshRateChanged="RefreshRateComboBox_RefreshRateChanged"/>
+
+        <!--Command Bar-->
+        <controlsCommandBars:CommandBar/>
+
+        <!-- ListView for displaying cryptocurrencies -->
+        <ListView x:Name="CurrenciesPanel"
+                  ItemsSource="{Binding Currencies}"
+                  HorizontalAlignment="Center"
+                  Margin="20,120,20,20"
+                  IsItemClickEnabled="True"
+                  ItemClick="CurrenciesPanel_ItemClick">
+            <!-- Headers -->
+            <ListView.Header>
+                <Grid Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Rank" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="Name" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBlock Text="Price" Grid.Column="2" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="Market Cap" Grid.Column="3" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="VWAP (24Hr)" Grid.Column="4" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="Supply" Grid.Column="5" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="Volume (24Hr)" Grid.Column="6" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="Change (24Hr)" Grid.Column="7" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
+            </ListView.Header>
+            <!-- Data Template -->
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="dto:CurrencyDTO">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding Rank}" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                        <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Symbol}" FontSize="14" FontStyle="Italic"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding PriceUsd, Converter={StaticResource AmountConverter}, ConverterParameter=True}" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <TextBlock Text="{Binding MarketCapUsd, Converter={StaticResource AmountConverter}, ConverterParameter=True}" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <TextBlock Text="{Binding Vwap24Hr, Converter={StaticResource AmountConverter}, ConverterParameter=True}" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <TextBlock Text="{Binding Supply, Converter={StaticResource AmountConverter}, ConverterParameter=False}" Grid.Column="5" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <TextBlock Text="{Binding VolumeUsd24Hr, Converter={StaticResource AmountConverter}, ConverterParameter=True}" Grid.Column="6" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <TextBlock Text="{Binding ChangePercent24Hr, Converter={StaticResource PercentageConverter}}" Grid.Column="7" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</Page>
