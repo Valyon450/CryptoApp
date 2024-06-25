@@ -1,0 +1,12 @@
+﻿<UserControl
+    x:Class="UI.CommonControls.Buttons.CandlesPageButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <AppBarButton x:Name="CandlesButton" Label="Candlestick Chart">
+        <AppBarButton.Icon>
+            <FontIcon FontFamily="{StaticResource SegoeMDL2Assets}" Glyph="&#xE999;" />
+        </AppBarButton.Icon>
+    </AppBarButton>
+
+</UserControl>

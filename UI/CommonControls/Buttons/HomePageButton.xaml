@@ -1,0 +1,8 @@
+﻿<UserControl
+    x:Class="UI.CommonControls.Buttons.HomePageButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <AppBarButton Icon="Home" Label="Main" Click="NavigateToMainPage_Click"/>
+    
+</UserControl>

@@ -1,0 +1,27 @@
+﻿<UserControl
+    x:Class="UI.CommonControls.CommandBars.CommandBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <CommandBar HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0">
+        <!-- Theme Toggle Button -->
+        <AppBarToggleButton Label="Theme" Click="ToggleThemeButton_Click">
+            <AppBarToggleButton.Icon>
+                <FontIcon FontFamily="{StaticResource SegoeMDL2Assets}" Glyph="&#xE706;" />
+            </AppBarToggleButton.Icon>
+        </AppBarToggleButton>
+        <!-- Localization Menu -->
+        <AppBarButton Label="Language">
+            <AppBarButton.Flyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="Ukrainian" Click="ChangeLanguageToUkrainian_Click"/>
+                    <MenuFlyoutItem Text="English" Click="ChangeLanguageToEnglish_Click"/>
+                </MenuFlyout>
+            </AppBarButton.Flyout>
+            <AppBarButton.Icon>
+                <FontIcon FontFamily="{StaticResource SegoeMDL2Assets}" Glyph="&#xE909;" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+    </CommandBar>
+    
+</UserControl>
