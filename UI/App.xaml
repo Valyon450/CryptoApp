@@ -1,0 +1,27 @@
+﻿<Application
+    x:Class="UI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Light theme resources -->
+            <ResourceDictionary x:Key="LightTheme">
+                <ResourceDictionary.ThemeDictionaries>
+                    <ResourceDictionary Source="CommonControls/Themes/LightTheme.xaml" x:Key="Default"/>
+                </ResourceDictionary.ThemeDictionaries>
+            </ResourceDictionary>
+
+            <!-- Light theme resources -->
+            <ResourceDictionary x:Key="DarkTheme">
+                <ResourceDictionary.ThemeDictionaries>
+                    <ResourceDictionary Source="CommonControls/Themes/DarkTheme.xaml" x:Key="Default"/>
+                </ResourceDictionary.ThemeDictionaries>
+            </ResourceDictionary>
+
+            <!-- Define Segoe MDL2 Assets font family -->
+            <FontFamily x:Key="SegoeMDL2Assets">Segoe MDL2 Assets</FontFamily>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
