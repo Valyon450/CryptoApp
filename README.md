@@ -1,16 +1,17 @@
 # CryptoApp
 
-Application is a UWP application for viewing information about top cryptocurrencies. CryptoApp is created using MVVM architecture and Dependency Injection and contains Business logic layer and Presentation layer. CoinCap and CoinGecko free APIs endpoints are used.
+It's a UWP application for viewing information about top cryptocurrencies. CryptoApp is created using MVVM architecture, Dependency Injection and contains Business logic layer and Presentation layer. CoinCap and CoinGecko free APIs endpoints are used.
 
 
 ## Features
 - Display a list of top cryptocurrencies.
+- Display a cryptocurrencie page with exchanges information list.
 - Search for cryptocurrencies by name or symbol.
 - Toggle between light and dark themes.
 - Display candlestick charts for market analysis.
 
 
-### Usage
+## Usage
 
 Searching for Cryptocurrencies
 1. Enter the name or symbol of a cryptocurrency in the search box.
